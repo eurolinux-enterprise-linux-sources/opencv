@@ -4,7 +4,7 @@
 
 Name:           opencv
 Version:        2.0.0
-Release:        9%{?dist}
+Release:        12%{?dist}
 Summary:        Collection of algorithms for computer vision
 
 Group:          Development/Libraries
@@ -20,6 +20,8 @@ Patch0:         opencv-cmake-libdir.patch
 Patch1:         opencv-2.0.0-gaussianrng.patch
 # Fixes malformed XMLs.
 Patch2:		opencv-2.0.0-xmllint.patch
+# Solve multilib issues.
+Patch3:		opencv-multilib.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:  libtool
@@ -94,6 +96,7 @@ This package contains Python bindings for the OpenCV library.
 %patch0 -p1
 %patch1 -p2
 %patch2 -p1 -b .xmllint
+%patch3 -p1 -b .multilib
 
 %build
 
@@ -175,7 +178,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/opencv
 %{_libdir}/lib*.so
 %{_libdir}/pkgconfig/opencv.pc
-%{_datadir}/opencv/OpenCVConfig.cmake
+%{_libdir}/cmake/opencv/OpenCVConfig.cmake
 
 %files devel-docs
 %defattr(-,root,root,-)
@@ -197,6 +200,10 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Mon Jun  3 2013 Honza Horak <hhorak@redhat.com> - 2.0.0-12
+- Move cmake file to libdir to solve multilib issues
+  Resolves: #658060
+
 * Tue Jun  8 2010 Karel Klic <kklic@redhat.com> - 2.0.0-9
 - Fix malformed XMLs
   Resolves: #594290
