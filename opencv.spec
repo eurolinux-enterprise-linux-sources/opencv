@@ -2,7 +2,7 @@
 
 Name:           opencv
 Version:        2.4.5
-Release:        1%{?dist}
+Release:        3%{?dist}
 Summary:        Collection of algorithms for computer vision
 
 Group:          Development/Libraries
@@ -256,6 +256,12 @@ popd
 
 
 %changelog
+* Fri Jan 24 2014 Daniel Mach <dmach@redhat.com> - 2.4.5-3
+- Mass rebuild 2014-01-24
+
+* Fri Dec 27 2013 Daniel Mach <dmach@redhat.com> - 2.4.5-2
+- Mass rebuild 2013-12-27
+
 * Thu May 23 2013 Nicolas Chauvet <kwizart@gmail.com> - 2.4.5-1
 - Update to 2.4.5-clean
 - Spec file clean-up
